@@ -1,0 +1,1 @@
+tcp,superadminpanel.challs.teamitaly.eu,80

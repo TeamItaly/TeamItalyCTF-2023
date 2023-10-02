@@ -1,0 +1,3 @@
+/server/src/__pycache__
+/server/src/files/*
+!/server/src/files/.gitkeep

@@ -1,0 +1,11 @@
+services:
+  challenge:
+    build: .
+    ports:
+      - "1337:1337"
+    environment:
+      - FLAG=flag{g68ruh}
+      - ADMIN_PASSWORD=Z.+D,)"3Akf~$03rG6<C
+      - HEADLESS_HOST=http://headless:5000/
+      - HEADLESS_AUTH=supersecret
+      - URL=http://leakynote.challs.teamitaly.eu/

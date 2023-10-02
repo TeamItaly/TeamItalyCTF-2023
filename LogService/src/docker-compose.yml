@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  log:
+    build: ./log
+    container_name: 'log'
+    restart: unless-stopped
+    ports:
+      - '9001:9001/tcp'

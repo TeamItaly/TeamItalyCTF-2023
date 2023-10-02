@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  subarray-sums-101:
+    build: .
+    ports:
+      - '15013:5555'
+    restart: unless-stopped
+    environment:
+      - FLAG=flag{z3_d03snt_s0lv3_3v3rything...0r_do3s_1t?}

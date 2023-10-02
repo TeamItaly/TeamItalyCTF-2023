@@ -1,0 +1,51 @@
+services:
+  app:
+    build: ./app
+    environment:
+      - FLAG=flag{_15_7H15_4_C5P_8YP455?_}
+      - SSO_URL=http://sso.localtest.me:3001
+      - CHALL_URL=http://aua.localtest.me:3000
+      #- CHALL_URL=https://metropolitan-deutsch-mainly-traveler.trycloudflare.com
+      #- SSO_URL=https://railway-madness-dome-vice.trycloudflare.com
+    network_mode: host
+    ports:
+      - 3000:3000
+  sso:
+    build: ./sso
+    environment:
+      - SSO_URL=http://sso.localtest.me:3001
+      - CHALL_URL=http://aua.localtest.me:3000
+      #- CHALL_URL=https://metropolitan-deutsch-mainly-traveler.trycloudflare.com
+      #- SSO_URL=https://railway-madness-dome-vice.trycloudflare.com
+      - REPORT_URL=http://headless:5000/
+      - AUTH_TOKEN_REPORT=supersecret
+    network_mode: host
+    ports:
+      - 3001:3001
+
+  # headless:
+  #   image: cybersecnatlab/challenge-headless:latest-manager
+  #   restart: unless-stopped
+  #   ports:
+  #     - 5000:5000
+  #   environment:
+  #     AUTH_TOKEN: supersecret
+  #     RABBITMQ_HOST: headless-rabbitmq
+  #     RABBITMQ_QUEUE: headless-jobs
+  #   depends_on:
+  #     - headless-rabbitmq
+
+  # headless-rabbitmq:
+  #   image: rabbitmq:3.11
+  #   restart: unless-stopped
+
+  # headless-worker:
+  #   image: cybersecnatlab/challenge-headless:latest-worker
+  #   restart: unless-stopped
+  #   environment:
+  #     RABBITMQ_HOST: headless-rabbitmq
+  #     RABBITMQ_QUEUE: headless-jobs
+  #   deploy:
+  #     replicas: 1
+  #   depends_on:
+  #     - headless-rabbitmq

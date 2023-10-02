@@ -1,0 +1,376 @@
+#include "arch.h"
+
+A = arch
+A == ARCH_X86_64 ? next : dead
+A = sys_number
+A != sendto ? allow : run_cpu
+
+dead:
+return KILL
+allow:
+return ALLOW
+
+run_cpu:
+
+// Input
+//
+// args[0] - registers
+// args[1] - ip
+// args[2] - sp
+// args[3] - mar
+// args[4] - instruction
+// args[5] - byte_idx, selects which of the output bytes should be put in errno
+//
+// Instruction format
+//
+// 31      17   14    11    8    0
+// | imm14 | rd | rs2 | rs1 | op |
+//    |imm8|
+//    23
+//
+// seccomp memory
+//
+// mem[0] - opcode
+// mem[1] - rs1 (value)
+// mem[2] - rs2 (value)
+// mem[3] - rd (index)
+// mem[4] - imm14
+// mem[5] - imm8
+// mem[6] - alu result / jump target
+
+#define REGS args[0]
+#define IP args[1]
+#define SP args[2]
+#define MAR args[3]
+#define INST args[4]
+#define BYTE_IDX args[5]
+
+#define OPCODE mem[0]
+#define RS1 mem[1]
+#define RS2 mem[2]
+#define RD mem[3]
+#define IMM14 mem[4]
+#define IMM8 mem[5]
+#define ALU_RES mem[6]
+
+// One of the sanity checks applied to seccomp filters is that loads never read
+// uninitialized memory (https://elixir.bootlin.com/linux/latest/source/net/core/filter.c#L911).
+// The check is stricter than needed, and doesn't consider that a return
+// instruction stops execution. Since ALU_RES is set only in some operations
+// and we early exit for an unknown opcode, the verifier marks it as
+// potentially uninitialized and rejects the filter. The easy fix is to
+// unconditionally initialize it here.
+A = 0
+ALU_RES = A
+
+// Decode the instruction
+// opcode
+    A = INST
+    A &= 0xff
+    OPCODE = A
+// rs1
+    A = INST
+    A >>= 8
+    A &= 7
+    A *= 8
+
+    A >= 32 ? read_rs1_hi : read_rs1_lo
+read_rs1_lo:
+    X = A
+    A = REGS
+    goto read_rs1
+read_rs1_hi:
+    A -= 32
+    X = A
+    A = REGS >> 32
+read_rs1:
+
+    A >>= X
+    A &= 0xff
+    RS1 = A
+// rs2
+    A = INST
+    A >>= 11
+    A &= 7
+    A *= 8
+
+    A >= 32 ? read_rs2_hi : read_rs2_lo
+read_rs2_lo:
+    X = A
+    A = REGS
+    goto read_rs2
+read_rs2_hi:
+    A -= 32
+    X = A
+    A = REGS >> 32
+read_rs2:
+
+    A >>= X
+    A &= 0xff
+    RS2 = A
+// rd
+    A = INST
+    A >>= 14
+    A &= 7
+    RD = A
+// imm14
+    A = INST
+    A >>= 17
+    A &= 0x3fff
+    IMM14 = A
+// imm8
+    A = INST
+    A >>= 17
+    A &= 0xff
+    IMM8 = A
+
+
+// Execute
+
+#define RET_MISC(sub_op) \
+    A = BUS_OP_MISC @\
+    A <<= 3 @\
+    X = sub_op @\
+    A |= X @\
+    A <<= 3
+
+#define SET_REG(rs) \
+    RET_MISC(BUS_MISC_SETREG) @\
+    X = RD @\
+    A |= X @\
+    A <<= 8 @\
+    X = rs @\
+    A |= X
+
+A = OPCODE
+A == OP_MOV ? next : op_mov_end
+SET_REG(RS1)
+goto done_trampoline
+op_mov_end:
+
+A == OP_SET ? next : op_set_end
+SET_REG(IMM8)
+goto done_trampoline
+op_set_end:
+
+#define ALU_OP(code, op) \
+    A == code ? next : code ## _end @\
+    X = RS2 @\
+    A = RS1 @\
+    A op X @\
+    A &= 0xff @\
+    ALU_RES = A @\
+    SET_REG(ALU_RES) @\
+    goto done_trampoline @\
+    code ## _end:
+
+ALU_OP(OP_ADD, +=)
+ALU_OP(OP_SUB, -=)
+ALU_OP(OP_MUL, *=)
+ALU_OP(OP_DIV, /=)
+ALU_OP(OP_AND, &=)
+ALU_OP(OP_OR, |=)
+ALU_OP(OP_XOR, ^=)
+
+A == OP_LOAD ? next : op_load_end
+RET_MISC(BUS_MISC_LOAD)
+X = RD
+A |= X
+A <<= 8
+goto done_trampoline
+op_load_end:
+
+A == OP_STORE ? next : op_store_end
+RET_MISC(BUS_MISC_STORE)
+A <<= 8
+X = RS1
+A |= X
+goto done_trampoline
+op_store_end:
+
+A == OP_IN ? next : op_in_end
+RET_MISC(BUS_MISC_IN)
+X = RD
+A |= X
+A <<= 8
+X = IMM8
+A |= X
+goto done_trampoline
+op_in_end:
+
+A == OP_OUT ? next : op_out_end
+// Special case, this instruction outputs the index of the source
+// register instead of its value. There wouldn't be enough output
+// bits otherwise.
+A = INST
+A >>= 8
+A &= 7
+ALU_RES = A
+RET_MISC(BUS_MISC_OUT)
+X = ALU_RES
+A |= X
+A <<= 8
+X = IMM8
+A |= X
+goto done
+op_out_end:
+
+A == OP_JMPR ? next : op_jmpr_end
+X = RS2
+A = RS1
+A <<= 8
+X = RS2
+A |= X
+ALU_RES = A
+goto do_jump
+op_jmpr_end:
+
+// trampoline to jump to the end
+goto done_trampoline_end
+done_trampoline:
+goto done
+done_trampoline_end:
+
+A == OP_JMP ? next : op_jmp_end
+A = IMM14
+ALU_RES = A
+goto do_jump
+op_jmp_end:
+
+A == OP_JZ ? next : op_jz_end
+A = IMM14
+ALU_RES = A
+X = RS2
+A = RS1
+A == X ? do_jump : do_nop
+op_jz_end:
+
+A == OP_JNZ ? next : op_jnz_end
+A = IMM14
+ALU_RES = A
+X = RS2
+A = RS1
+A != X ? do_jump : do_nop
+op_jnz_end:
+
+A == OP_JG ? next : op_jg_end
+A = IMM14
+ALU_RES = A
+X = RS2
+A = RS1
+A > X ? do_jump : do_nop
+op_jg_end:
+
+A == OP_JGE ? next : op_jge_end
+A = IMM14
+ALU_RES = A
+X = RS2
+A = RS1
+A >= X ? do_jump : do_nop
+op_jge_end:
+
+A == OP_LMAR ? next : op_lmar_end
+X = RS2
+A = RS1
+A <<= 8
+X = RS2
+A |= X
+ALU_RES = A
+goto set_mar
+op_lmar_end:
+
+A == OP_INCMAR ? next : op_incmar_end
+A = MAR
+A += 1
+ALU_RES = A
+goto set_mar
+op_incmar_end:
+
+A == OP_LSP ? next : op_lsp_end
+X = RS2
+A = RS1
+A <<= 8
+X = RS2
+A |= X
+ALU_RES = A
+goto set_sp
+op_lsp_end:
+
+A == OP_INCSP ? next : op_incsp_end
+A = SP
+A += 1
+ALU_RES = A
+goto set_sp
+op_incsp_end:
+
+A == OP_DECSP ? next : op_decsp_end
+A = SP
+A -= 1
+ALU_RES = A
+goto set_sp
+op_decsp_end:
+
+A == OP_CALL ? next : op_call_end
+RET_MISC(BUS_MISC_CALL)
+A <<= 8
+X = IMM8
+A |= X
+goto done
+op_call_end:
+
+A == OP_RET ? next : op_ret_end
+RET_MISC(BUS_MISC_RET)
+A <<= 8
+goto done
+op_ret_end:
+
+// invalid instruction.
+invalid:
+return KILL
+
+do_jump:
+A = BUS_OP_IP
+A <<= 14
+X = ALU_RES
+A |= X
+goto done
+
+do_nop:
+A = BUS_OP_MISC
+A <<= 3
+A = BUS_MISC_NOP
+A <<= 11
+goto done
+
+set_mar:
+A = BUS_OP_MAR
+A <<= 14
+X = ALU_RES
+A |= X
+goto done
+
+set_sp:
+A = BUS_OP_SP
+A <<= 14
+X = ALU_RES
+A |= X
+// goto done
+
+done:
+X = A
+A = BYTE_IDX
+A == 0 ? ret_lower : ret_higher
+
+ret_lower:
+A = X
+A &= 0xff
+goto do_return
+
+ret_higher:
+A = X
+A >>= 8
+A &= 0xff
+
+do_return:
+A |= 0x50000 // return ERRNO(A)
+return A

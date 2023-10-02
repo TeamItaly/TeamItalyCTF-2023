@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  pwn-chall:
+    build: .
+    ports:
+      - '15012:5555'
+    restart: unless-stopped
+    environment:
+      - FLAG=flag{1n_th3_3nd_1s_alw4ys_r4nd0m}

@@ -1,0 +1,12 @@
+https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
+
+Section 4.3.1 says
+```
+A ZIP file MUST have only one "end of central directory record".
+```
+but it's rarely enforced.
+
+
+Section 8.3.3 semms to imply that the central directory should be at the end of the file (it talks about the splitting of files, but I think it's principles can be applied to a single file).
+
+Nearly every ZIP file reader reads from the end, 7-zip reads from the beginning...

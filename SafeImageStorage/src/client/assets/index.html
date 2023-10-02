@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Safe Image Storage</title>
+
+	<link href="bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header data-bs-theme="dark">
+	<div class="navbar navbar-dark bg-dark shadow-sm">
+		<div class="container">
+			<a href="/" class="navbar-brand d-flex align-items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+				     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+				     viewBox="0 0 24 24">
+					<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+					<circle cx="12" cy="13" r="4"/>
+				</svg>
+				<strong>Safe Image Storage</strong>
+			</a>
+		</div>
+	</div>
+</header>
+
+<main>
+	<section class="py-5 text-center container">
+		<div class="row py-lg-5">
+			<div class="col-lg-6 col-md-8 mx-auto">
+				<h1 class="fw-light">All you need is the server key:</h1>
+				<div class="input-group mt-3">
+					<input type="text" class="form-control" placeholder="Server key (hex)" minlength="32" maxlength="32" required id="server-key-input">
+					<button class="btn btn-outline-primary" type="button" id="decrypt-btn">Decrypt images</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="album py-5 bg-body-tertiary">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				<div class="col">
+					<div class="card shadow-sm">
+						<img class="card-img-top" width="100%" height="225" id="flag-img" alt="The flag"/>
+						<div class="card-body">
+							<p class="card-text">The flag</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card shadow-sm">
+						<img class="card-img-top" width="100%" height="225" id="linux-img" alt="Linux"/>
+						<div class="card-body">
+							<p class="card-text">Linux</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card shadow-sm">
+						<img class="card-img-top" width="100%" height="225" id="golang-img" alt="Golang"/>
+						<div class="card-body">
+							<p class="card-text">Golang</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card shadow-sm">
+						<img class="card-img-top" width="100%" height="225" id="wasm-img" alt="WASM"/>
+						<div class="card-body">
+							<p class="card-text">WASM</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card shadow-sm">
+						<img class="card-img-top" width="100%" height="225" id="bootstrap-img" alt="Bootstrap"/>
+						<div class="card-body">
+							<p class="card-text">Bootstrap</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card shadow-sm">
+						<img class="card-img-top" width="100%" height="225" id="teamitaly-img" alt="TeamItaly"/>
+						<div class="card-body">
+							<p class="card-text">TeamItaly</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="bootstrap.bundle.min.js"></script>
+<script src="wasm_exec.js"></script>
+<script>
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch("client.wasm"), go.importObject).then((result) => {
+        go.run(result.instance);
+
+        setTimeout(decryptImages, 500, '00'.repeat(16))
+    });
+
+    const serverKeyInput = document.getElementById('server-key-input')
+    const decryptBtn = document.getElementById('decrypt-btn')
+    decryptBtn.onclick = () => {
+        const val = serverKeyInput.value
+        if (val.length !== 32) {
+            return
+        }
+
+        decryptImages(val)
+    }
+
+    function decryptImages(serverKey) {
+        Promise.all([
+            loadImage('flag', serverKey),
+            loadImage('linux', serverKey),
+            loadImage('golang', serverKey),
+            loadImage('wasm', serverKey),
+            loadImage('bootstrap', serverKey),
+		        loadImage('teamitaly', serverKey),
+        ]).catch(err => {
+            console.error(err)
+            alert(err)
+        })
+    }
+
+    async function loadImage(id, serverKey) {
+        const elem = document.getElementById(id + '-img')
+        if (!elem) {
+            return
+        }
+
+        elem.src = await requestImageAsync(id + '.png', serverKey)
+    }
+
+    async function requestImageAsync(name, serverKey) {
+        return new Promise((accept, reject) => {
+            window.requestImage(name, serverKey, (url, err) => {
+                if (err) {
+                    reject(err)
+                    return
+                }
+
+                accept(url)
+            })
+        })
+    }
+</script>
+</body>
+</html>

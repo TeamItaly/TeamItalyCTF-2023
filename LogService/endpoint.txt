@@ -1,0 +1,1 @@
+tcp,log.challs.teamitaly.eu,29006

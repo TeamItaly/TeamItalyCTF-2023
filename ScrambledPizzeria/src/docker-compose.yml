@@ -1,0 +1,6 @@
+services:
+  server:
+    build: challenge
+    restart: unless-stopped
+    ports:
+      - 5555:5555

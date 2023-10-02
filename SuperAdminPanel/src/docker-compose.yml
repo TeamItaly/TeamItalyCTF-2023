@@ -1,0 +1,48 @@
+version: '3'
+services:
+    superadminpanel-panel:
+        build: ./adminpanel
+        environment:
+            - PASSWORD=goodluckcrackingthis_012391293
+            - REPORT_URL=http://superadminpanel-headless:5000/
+            - AUTH_TOKEN_REPORT=zZ0nAtYHtAUGA0DSfbTV57jiG
+            - FLAG=flag{I_L0v3_st34ling_auTOf1ll}
+        ports:
+            - 80:80
+        networks:
+            - superadminpanel
+
+    superadminpanel-headless:
+        image: cybersecnatlab/challenge-headless:latest-manager
+        restart: unless-stopped
+        environment:
+            AUTH_TOKEN: zZ0nAtYHtAUGA0DSfbTV57jiG
+            RABBITMQ_HOST: superadminpanel-headless-rabbitmq
+            RABBITMQ_QUEUE: superadminpanel-headless-jobs
+        depends_on:
+            - superadminpanel-headless-rabbitmq
+        networks:
+            - superadminpanel
+
+    superadminpanel-headless-rabbitmq:
+        image: rabbitmq:3.11
+        restart: unless-stopped
+        networks:
+            - superadminpanel
+
+    superadminpanel-headless-worker:
+        image: cybersecnatlab/challenge-headless:latest-worker
+        restart: unless-stopped
+        environment:
+            RABBITMQ_HOST: superadminpanel-headless-rabbitmq
+            RABBITMQ_QUEUE: superadminpanel-headless-jobs
+        deploy:
+            replicas: 4
+        depends_on:
+            - superadminpanel-headless-rabbitmq
+        networks:
+            - superadminpanel
+
+networks:
+  superadminpanel:
+    driver: bridge

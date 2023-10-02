@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  challenge:
+    build:
+        context: .
+    ports:
+      - '15011:1337'
+    restart: unless-stopped
+    volumes:
+      - ./bzImage:/opt/bzImage
+      - ./rootfs.cpio.gz:/opt/rootfs.cpio.gz
+      - ./run.sh:/opt/run.sh
+      - ./run.py:/opt/run.py
+      - ./hashcash.py:/opt/hashcash.py

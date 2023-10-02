@@ -1,0 +1,13 @@
+services:
+  server:
+    build: server
+    restart: unless-stopped
+    volumes:
+      - ./client/assets/:/var/www/html:ro
+      - ./images:/images:ro
+      - server_data:/data
+    ports:
+      - 1337:1337
+
+volumes:
+  server_data:

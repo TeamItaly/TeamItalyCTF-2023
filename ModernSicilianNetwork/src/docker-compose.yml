@@ -1,0 +1,52 @@
+version: "3.5"
+
+services:
+  db:
+    image: mariadb
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      # if you change credentials, change DATABASE_URI in other containers too
+      MARIADB_USER: flask
+      MARIADB_PASSWORD: Vpg0hKAzDGknsLmPaNlj
+      MARIADB_DATABASE: msn
+      MARIADB_SKIP_TEST_DB: yes
+      MARIADB_INITDB_SKIP_TZINFO: yes
+      MARIADB_EXTRA_FLAGS: --skip-log-bin
+    healthcheck:
+      test: mariadb-admin ping -h localhost -u $$MARIADB_USER --password=$$MARIADB_PASSWORD
+      interval: 9s
+      timeout: 9s
+      retries: 10
+
+  msn-chat:
+    build: ./msn-chat/
+    ports:
+      - "6900:6900"
+    environment:
+      DATABASE_URI: mysql+pymysql://flask:Vpg0hKAzDGknsLmPaNlj@db:3306/msn
+      SECRET_KEY: 5895d78c11924290899e21c75bc8a6ad40db3b5096b446818c261cfdd8e8f577
+      CHECKER_TOKEN: 77dbca0385e54dcbbf6a746bad9f2af4f0c1445f7325476b82737d1b7c939143
+      ADMIN_PASSWORD: HSmhum3zhE1uU98GnTvAQjAcONChwAvz
+      HEADLESS_HOST: headless
+      HEADLESS_PORT: 5000
+      HEADLESS_AUTH: DEVGIANLU_PLS_METTI_QUALCOSA
+      CHAT_PORT: 6900
+      SPACES_PORT: 6969
+      DOMAIN: msn.challs.teamitaly.eu
+      FLAG: flag{XSM3SS4NG3R}
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  msn-spaces:
+    build: ./msn-spaces/
+    ports:
+      - "6969:6969"
+    environment:
+      DOMAIN: msn.challs.teamitaly.eu
+      DATABASE_URI: mysql+pymysql://flask:Vpg0hKAzDGknsLmPaNlj@db:3306/msn
+      SECRET_KEY: 5895d78c11924290899e21c75bc8a6ad40db3b5096b446818c261cfdd8e8f577
+      CHAT_PORT: 6900
+    depends_on:
+      db:
+        condition: service_healthy

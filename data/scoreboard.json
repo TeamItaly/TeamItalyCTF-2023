@@ -1,0 +1,1104 @@
+{
+    "tasks": [
+      "LIGAbue",
+      "Secure comparator",
+      "Borraccia",
+      "Big RSA",
+      "Scrambled Pizzeria",
+      "Duality",
+      "kSMS - Secure Message Storage",
+      "ZIP Extractor 3000",
+      "Subarray Sums 101",
+      "LogService",
+      ":q!!!!!!!",
+      "Safe Image Storage",
+      "TrashBin",
+      "Pwn Chall",
+      "leakynote v3",
+      "ᴬnother ᵤseless ᴬpplication",
+      "Super Admin Panel",
+      "Modern Sicilian Network"
+    ],
+    "standings": [
+      {
+        "pos": 1,
+        "team": "Cyberlandsholdet",
+        "score": 1562,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696160625
+          },
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696156295
+          },
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696105042
+          },
+          "ZIP Extractor 3000": {
+            "points": 414,
+            "time": 1696104729
+          },
+          "LogService": {
+            "points": 207,
+            "time": 1696101761
+          },
+          "Safe Image Storage": {
+            "points": 324,
+            "time": 1696083373
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696079235
+          }
+        },
+        "lastAccept": 1696160625
+      },
+      {
+        "pos": 2,
+        "team": "srdnlen",
+        "score": 1537,
+        "taskStats": {
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696151174
+          },
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696107686
+          },
+          "Safe Image Storage": {
+            "points": 324,
+            "time": 1696106673
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696089184
+          },
+          "leakynote v3": {
+            "points": 500,
+            "time": 1696088003
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696085091
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696081044
+          }
+        },
+        "lastAccept": 1696151174
+      },
+      {
+        "pos": 3,
+        "team": "HeroisDoMar",
+        "score": 1318,
+        "taskStats": {
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696158769
+          },
+          "Safe Image Storage": {
+            "points": 324,
+            "time": 1696155233
+          },
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696089105
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696084241
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696083100
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696082754
+          },
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696081054
+          }
+        },
+        "lastAccept": 1696158769
+      },
+      {
+        "pos": 4,
+        "team": "remaining:blankets",
+        "score": 1294,
+        "taskStats": {
+          "Duality": {
+            "points": 453,
+            "time": 1696148849
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696147511
+          },
+          "Safe Image Storage": {
+            "points": 324,
+            "time": 1696103651
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696099745
+          },
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696095233
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696079730
+          }
+        },
+        "lastAccept": 1696148849
+      },
+      {
+        "pos": 5,
+        "team": "FlagMotori",
+        "score": 1049,
+        "taskStats": {
+          ":q!!!!!!!": {
+            "points": 500,
+            "time": 1696154879
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696112094
+          },
+          "ᴬnother ᵤseless ᴬpplication": {
+            "points": 453,
+            "time": 1696101098
+          }
+        },
+        "lastAccept": 1696154879
+      },
+      {
+        "pos": 6,
+        "team": "TRX",
+        "score": 1037,
+        "taskStats": {
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696150669
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696106373
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696090582
+          },
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696089423
+          },
+          "Safe Image Storage": {
+            "points": 324,
+            "time": 1696086999
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696082605
+          }
+        },
+        "lastAccept": 1696150669
+      },
+      {
+        "pos": 7,
+        "team": "dtl",
+        "score": 1005,
+        "taskStats": {
+          "LogService": {
+            "points": 207,
+            "time": 1696157179
+          },
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696155556
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696101405
+          },
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696096735
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696083374
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696080403
+          }
+        },
+        "lastAccept": 1696157179
+      },
+      {
+        "pos": 8,
+        "team": "FoocHackz",
+        "score": 971,
+        "taskStats": {
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696160963
+          },
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696149148
+          },
+          "Borraccia": {
+            "points": 453,
+            "time": 1696095526
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696079890
+          }
+        },
+        "lastAccept": 1696160963
+      },
+      {
+        "pos": 9,
+        "team": "MadrHacks",
+        "score": 922,
+        "taskStats": {
+          "Safe Image Storage": {
+            "points": 324,
+            "time": 1696114875
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696089253
+          },
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696087781
+          },
+          "LogService": {
+            "points": 207,
+            "time": 1696083380
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696080953
+          }
+        },
+        "lastAccept": 1696114875
+      },
+      {
+        "pos": 10,
+        "team": "ECSC TeamNL 2023",
+        "score": 906,
+        "taskStats": {
+          "ZIP Extractor 3000": {
+            "points": 414,
+            "time": 1696158674
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696103159
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696100993
+          },
+          "LogService": {
+            "points": 207,
+            "time": 1696087177
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696083464
+          }
+        },
+        "lastAccept": 1696158674
+      },
+      {
+        "pos": 11,
+        "team": "Kinder Bueno",
+        "score": 844,
+        "taskStats": {
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696153516
+          },
+          "ᴬnother ᵤseless ᴬpplication": {
+            "points": 453,
+            "time": 1696146492
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696093679
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696085660
+          }
+        },
+        "lastAccept": 1696153516
+      },
+      {
+        "pos": 12,
+        "team": "Kokoška",
+        "score": 841,
+        "taskStats": {
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696155330
+          },
+          "ZIP Extractor 3000": {
+            "points": 414,
+            "time": 1696111796
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696095484
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696087231
+          }
+        },
+        "lastAccept": 1696155330
+      },
+      {
+        "pos": 13,
+        "team": "Zer0Tolerance",
+        "score": 838,
+        "taskStats": {
+          "Borraccia": {
+            "points": 453,
+            "time": 1696118170
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696105206
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696091825
+          },
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696081064
+          }
+        },
+        "lastAccept": 1696118170
+      },
+      {
+        "pos": 14,
+        "team": "Team Pitucci",
+        "score": 699,
+        "taskStats": {
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696100251
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696090988
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696090433
+          },
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696088438
+          }
+        },
+        "lastAccept": 1696100251
+      },
+      {
+        "pos": 15,
+        "team": "neuland",
+        "score": 695,
+        "taskStats": {
+          "Secure comparator": {
+            "points": 500,
+            "time": 1696107835
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696099141
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696085765
+          }
+        },
+        "lastAccept": 1696107835
+      },
+      {
+        "pos": 16,
+        "team": "Rubi di Cubrik",
+        "score": 674,
+        "taskStats": {
+          "LogService": {
+            "points": 207,
+            "time": 1696160121
+          },
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696146594
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696088375
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696082659
+          }
+        },
+        "lastAccept": 1696160121
+      },
+      {
+        "pos": 17,
+        "team": "K!nd4SUS",
+        "score": 566,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696161116
+          },
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696133429
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696089982
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696088501
+          }
+        },
+        "lastAccept": 1696161116
+      },
+      {
+        "pos": 18,
+        "team": "Little computer demons",
+        "score": 529,
+        "taskStats": {
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696157346
+          },
+          "LogService": {
+            "points": 207,
+            "time": 1696132169
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696105454
+          }
+        },
+        "lastAccept": 1696157346
+      },
+      {
+        "pos": 19,
+        "team": "54e2952a4f049a4d8f11740c0ca852d6",
+        "score": 492,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696160863
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696107259
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696102490
+          },
+          "LogService": {
+            "points": 207,
+            "time": 1696094258
+          }
+        },
+        "lastAccept": 1696160863
+      },
+      {
+        "pos": 20,
+        "team": "/mnt/ain",
+        "score": 481,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696106225
+          },
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696102920
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696097769
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696082760
+          }
+        },
+        "lastAccept": 1696106225
+      },
+      {
+        "pos": 21,
+        "team": "CyberSp3ck",
+        "score": 476,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696151139
+          },
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696147693
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696084535
+          }
+        },
+        "lastAccept": 1696151139
+      },
+      {
+        "pos": 22,
+        "team": "CyKor",
+        "score": 467,
+        "taskStats": {
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696096309
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696083503
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696078221
+          }
+        },
+        "lastAccept": 1696096309
+      },
+      {
+        "pos": 23,
+        "team": "/bad",
+        "score": 453,
+        "taskStats": {
+          "Duality": {
+            "points": 453,
+            "time": 1696098356
+          }
+        },
+        "lastAccept": 1696098356
+      },
+      {
+        "pos": 24,
+        "team": "ZenHack",
+        "score": 421,
+        "taskStats": {
+          "Scrambled Pizzeria": {
+            "points": 232,
+            "time": 1696112541
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696086694
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696085342
+          }
+        },
+        "lastAccept": 1696112541
+      },
+      {
+        "pos": 25,
+        "team": "aetruria",
+        "score": 402,
+        "taskStats": {
+          "LogService": {
+            "points": 207,
+            "time": 1696119881
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696090021
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696081681
+          }
+        },
+        "lastAccept": 1696119881
+      },
+      {
+        "pos": 26,
+        "team": "spookies",
+        "score": 402,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696154907
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696152080
+          },
+          "LogService": {
+            "points": 207,
+            "time": 1696123729
+          }
+        },
+        "lastAccept": 1696154907
+      },
+      {
+        "pos": 27,
+        "team": "no rev/pwn no life",
+        "score": 396,
+        "taskStats": {
+          "LogService": {
+            "points": 207,
+            "time": 1696144497
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696136781
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696077526
+          }
+        },
+        "lastAccept": 1696144497
+      },
+      {
+        "pos": 28,
+        "team": "Hungary23",
+        "score": 396,
+        "taskStats": {
+          "LogService": {
+            "points": 207,
+            "time": 1696144706
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696110020
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696106760
+          }
+        },
+        "lastAccept": 1696144706
+      },
+      {
+        "pos": 29,
+        "team": "ECSC_Team_Greece",
+        "score": 385,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696159428
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696158429
+          },
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696107107
+          }
+        },
+        "lastAccept": 1696159428
+      },
+      {
+        "pos": 30,
+        "team": "pwnlentoni",
+        "score": 382,
+        "taskStats": {
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696125907
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696097781
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696087651
+          }
+        },
+        "lastAccept": 1696125907
+      },
+      {
+        "pos": 31,
+        "team": "born2scan",
+        "score": 380,
+        "taskStats": {
+          "Subarray Sums 101": {
+            "points": 281,
+            "time": 1696147586
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696087568
+          }
+        },
+        "lastAccept": 1696147586
+      },
+      {
+        "pos": 32,
+        "team": "Ulisse",
+        "score": 285,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696091549
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696088698
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696079924
+          }
+        },
+        "lastAccept": 1696091549
+      },
+      {
+        "pos": 33,
+        "team": "pwnormus",
+        "score": 285,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696099666
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696095493
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696083750
+          }
+        },
+        "lastAccept": 1696099666
+      },
+      {
+        "pos": 34,
+        "team": "NASLAB",
+        "score": 285,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696114788
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696091935
+          },
+          "Big RSA": {
+            "points": 90,
+            "time": 1696088395
+          }
+        },
+        "lastAccept": 1696114788
+      },
+      {
+        "pos": 35,
+        "team": "ECSC Team France",
+        "score": 207,
+        "taskStats": {
+          "LogService": {
+            "points": 207,
+            "time": 1696088386
+          }
+        },
+        "lastAccept": 1696088386
+      },
+      {
+        "pos": 36,
+        "team": "16J",
+        "score": 207,
+        "taskStats": {
+          "LogService": {
+            "points": 207,
+            "time": 1696133926
+          }
+        },
+        "lastAccept": 1696133926
+      },
+      {
+        "pos": 37,
+        "team": "GhostInTheShell",
+        "score": 196,
+        "taskStats": {
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696102235
+          }
+        },
+        "lastAccept": 1696102235
+      },
+      {
+        "pos": 38,
+        "team": "AlanTuringProject",
+        "score": 196,
+        "taskStats": {
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696129095
+          }
+        },
+        "lastAccept": 1696129095
+      },
+      {
+        "pos": 39,
+        "team": "TEAM A",
+        "score": 196,
+        "taskStats": {
+          "Modern Sicilian Network": {
+            "points": 196,
+            "time": 1696131298
+          }
+        },
+        "lastAccept": 1696131298
+      },
+      {
+        "pos": 40,
+        "team": "CY_CLOWNS",
+        "score": 195,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696096906
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696096655
+          }
+        },
+        "lastAccept": 1696096906
+      },
+      {
+        "pos": 41,
+        "team": "HazmatBoumiz",
+        "score": 195,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696096934
+          },
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696094582
+          }
+        },
+        "lastAccept": 1696096934
+      },
+      {
+        "pos": 42,
+        "team": "BeautifulSssup",
+        "score": 186,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696113718
+          },
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696111465
+          }
+        },
+        "lastAccept": 1696113718
+      },
+      {
+        "pos": 43,
+        "team": "dadadani",
+        "score": 99,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696078789
+          }
+        },
+        "lastAccept": 1696078789
+      },
+      {
+        "pos": 44,
+        "team": "pwnthenope",
+        "score": 99,
+        "taskStats": {
+          "Super Admin Panel": {
+            "points": 99,
+            "time": 1696157144
+          }
+        },
+        "lastAccept": 1696157144
+      },
+      {
+        "pos": 45,
+        "team": "ReverseIT",
+        "score": 96,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696084910
+          }
+        },
+        "lastAccept": 1696084910
+      },
+      {
+        "pos": 46,
+        "team": "IngrifHackTeam",
+        "score": 96,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696090619
+          }
+        },
+        "lastAccept": 1696090619
+      },
+      {
+        "pos": 47,
+        "team": "Tower of Hanoi",
+        "score": 96,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696091652
+          }
+        },
+        "lastAccept": 1696091652
+      },
+      {
+        "pos": 48,
+        "team": "V:HackaBoia",
+        "score": 96,
+        "taskStats": {
+          "LIGAbue": {
+            "points": 96,
+            "time": 1696099237
+          }
+        },
+        "lastAccept": 1696099237
+      },
+      {
+        "pos": 49,
+        "team": "Obe-One",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696076289
+          }
+        },
+        "lastAccept": 1696076289
+      },
+      {
+        "pos": 50,
+        "team": "EccRoll",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696077596
+          }
+        },
+        "lastAccept": 1696077596
+      },
+      {
+        "pos": 51,
+        "team": "Hantu Siber",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696080255
+          }
+        },
+        "lastAccept": 1696080255
+      },
+      {
+        "pos": 52,
+        "team": ":capoo_scared:",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696084148
+          }
+        },
+        "lastAccept": 1696084148
+      },
+      {
+        "pos": 53,
+        "team": "CyberSpace",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696095543
+          }
+        },
+        "lastAccept": 1696095543
+      },
+      {
+        "pos": 54,
+        "team": "Zer0Slove",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696101331
+          }
+        },
+        "lastAccept": 1696101331
+      },
+      {
+        "pos": 55,
+        "team": "Arr3stY0u",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696126488
+          }
+        },
+        "lastAccept": 1696126488
+      },
+      {
+        "pos": 56,
+        "team": "kanon",
+        "score": 90,
+        "taskStats": {
+          "Big RSA": {
+            "points": 90,
+            "time": 1696158916
+          }
+        },
+        "lastAccept": 1696158916
+      }
+    ]
+  }
