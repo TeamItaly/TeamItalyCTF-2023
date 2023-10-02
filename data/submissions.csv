@@ -1,3 +1,4 @@
+id,name,challenge,category,event,score,time,flag,valid
 15,K!nd4SUS,Super Admin Panel,Web,TeamItaly CTF 2023,99,Sun Oct 01 2023 11:51:56 GMT+0000 (Coordinated Universal Time),flag{I_L0v3_st34ling_auTOf1ll},true
 25,FoocHackz,Scrambled Pizzeria,Crypto,TeamItaly CTF 2023,232,Sun Oct 01 2023 11:49:23 GMT+0000 (Coordinated Universal Time),flag{1_n33d_70_r37h1nk_my_p3rmu74710n},true
 148,54e2952a4f049a4d8f11740c0ca852d6,LIGAbue,Rev,TeamItaly CTF 2023,96,Sun Oct 01 2023 11:47:43 GMT+0000 (Coordinated Universal Time),flag{f0nt_l1g4tur3s_c4n_b3_4_f1n173_s7at3_m4ch1n3!!},true
